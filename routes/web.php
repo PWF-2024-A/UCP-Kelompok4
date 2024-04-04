@@ -1,10 +1,9 @@
 <?php
 
-use App\Models\Todo;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TodoController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,10 +30,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/todo', [TodoController::class, 'index'])->name('todo.index');
+    Route::post('/todo/store', [TodoController::class, 'store'])->name('todo.store');
     Route::get('/todo/create', [TodoController::class, 'create'])->name('todo.create');
-    Route::get('/todo/edit', [TodoController::class, 'edit'])->name('todo.edit');
+    Route::get('/todo/edit', [TodoController::class, 'index'])->name('todo.edit');
 
     Route::get('/user', [UserController::class, 'index'])->name('user.index');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
